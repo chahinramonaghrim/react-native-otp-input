@@ -105,12 +105,12 @@ export default class OTPInputView extends Component {
             }
         };
         this.focusField = (index) => {
-            if (index < this.fields.length) {
-                this.fields[index].focus();
+            if (index < this.fields.length && this.fields[index]) {
+                this.fields[index].focus()
                 this.setState({
                     selectedIndex: index
-                });
-            }
+                })
+           }
         };
         this.blurAllFields = () => {
             this.fields.forEach((field) => field.blur());
@@ -155,7 +155,9 @@ export default class OTPInputView extends Component {
     }
     componentDidMount() {
         this.copyCodeFromClipBoardOnAndroid();
-        this.bringUpKeyBoardIfNeeded();
+         setTimeout(()=>{
+            this.bringUpKeyBoardIfNeeded();
+        },0)
         this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide);
     }
     componentWillUnmount() {
